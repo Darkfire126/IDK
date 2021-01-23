@@ -81,7 +81,7 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
 
 
  client.on('ready', () => {
- // creates an arraylist containing phrases you want your bot to switch through.
+console.log(`${client.username} has logged in!`)
  client.user.setPresence({ activity:
   { name: `.help || servers`,
  type: "WATCHING" }, 
