@@ -76,19 +76,15 @@ client.on('ready', () => {
 const Constants = require('./node_modules/discord.js/src/util/Constants');
 const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord Android`; //or Discord iOS
  //Ran whenever a supported database connection is connected
- const activities_list = [
-  "with the .help command.", 
-  "with the .ping command",
-  "with some code", 
-  "with JavaScript"
-  ]; 
+
+  const TOserver = await client.guilds.cache.size; 
 
 
  client.on('ready', () => {
  // creates an arraylist containing phrases you want your bot to switch through.
  client.user.setPresence({ activity:
-  { name: 'the .help command',
- type: "WATCHING" }, 
+  { name: `.help || ${TOserver} `,
+ type: "STREAMING" }, 
   status: webmoblie 
 })
 const status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
