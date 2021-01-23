@@ -77,7 +77,7 @@ const Constants = require('./node_modules/discord.js/src/util/Constants');
 const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord Android`; //or Discord iOS
  //Ran whenever a supported database connection is connected
 
-  const TOserver = await client.guilds.cache.size; 
+  const TOserver = client.guilds.cache.size; 
 
 
  client.on('ready', () => {
