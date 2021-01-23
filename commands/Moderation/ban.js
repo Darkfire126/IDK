@@ -5,8 +5,10 @@ module.exports = {
     requiredPermissions: ['BAN_MEMBERS'],
     expectedArgs: "<@user> <reason>",
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
-        const mslice = args.slice(0).join(" ")
-        const member = await client.users.fetch(mslice)
+
+        if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('I don\'t have the right permissions.')
+
+        const member = message.mentions.members.first() || message.guild.members.cache.get(args.slice(0).join) || await client.users.fetch(args.slice(0).join);
 
         if(!args[0]) return message.channel.send('Please specify a user');
 
@@ -17,14 +19,14 @@ module.exports = {
 
         let reason = args.slice(1).join(" ");
 
-        if(reason === undefined) reason = 'Unspecified';
+        if(!reason) reason = 'Unspecified';
 
-        member.ban(reason)
-        .catch(err => {
-            if(err) return message.channel.send('Something went wrong')
+        member.ban({ days: 7, reason: reason }).catch(err => { 
+          message.channel.send('Something went wrong')
+            console.log(err)
         })
 
-        const banembed = new MessageEmbed()
+        const banembed = new Discord.MessageEmbed()
         .setTitle('Member Banned')
         .setThumbnail(member.user.displayAvatarURL())
         .addField('User Banned', member)
