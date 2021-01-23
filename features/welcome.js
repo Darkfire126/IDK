@@ -50,3 +50,8 @@ module.exports = (client) => {
     const attachment = new MessageAttachment(canvas.toBuffer())
     channel.send('', attachment)
   })}
+  module.exports.config = {
+    displayName: 'Welcome', // Can be changed any time
+    dbName: 'Welcome', // Should be unique and NEVER be changed once set
+    loadDBFirst: true, // Wait for the database connection to be present
+  }

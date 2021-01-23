@@ -13,8 +13,10 @@ const loadData = async () => {
 loadData()
 
 module.exports = {
+    category: "Configuration",
+    description: "set the welcome! channel",
   requiredPermissions: ['ADMINISTRATOR'],
-  callback: async (message) => {
+  callback: async ({ message, args, text, client, prefix, instance }) => {
     const { guild, channel } = message
 
     await welcomeSchema.findOneAndUpdate(

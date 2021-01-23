@@ -1,6 +1,8 @@
 module.exports = {
     requiredPermissions: ['ADMINISTRATOR'],
-    callback: (message, args, text, client) => {
+    category: "Configuration",
+    description: "set the welcome! channel",
+    callback: async ({ message, args, text, client, prefix, instance }) => {
       client.emit('guildMemberAdd', message.member)
     },
   }
