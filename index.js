@@ -56,7 +56,7 @@ client.on('ready', () => {
     },*/
     {
       // You can change the default emojis as well
-      name: 'Config',
+      name: 'Configuration',
       emoji: '🚧',
       // You can also hide a category from the help menu
       // Admins bypass this
