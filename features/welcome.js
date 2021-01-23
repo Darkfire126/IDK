@@ -37,12 +37,12 @@ module.exports = (client) => {
     ctx.drawImage(pfp, x, y)
 
     ctx.fillStyle = '#ffffff'
-    ctx.font = '35px sans-serif'
+    ctx.font = '35px Times New Roman'
     let text = `Welcome ${member.user.tag}`
     x = canvas.width / 2 - ctx.measureText(text).width / 2
     ctx.fillText(text, x, 60 + pfp.height)
 
-    ctx.font = '30px sans-serif'
+    ctx.font = '30px Times New Roman'
     text = `Member #${guild.memberCount}`
     x = canvas.width / 2 - ctx.measureText(text).width / 2
     ctx.fillText(text, x, 100 + pfp.height)
