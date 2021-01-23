@@ -5,6 +5,8 @@ module.exports = {
     expectedArgs: "<Target user's @> <The role name>",
     description: "Remove someone's aslong as you are a Moderator",
     permissions: ['MANAGE_ROLES'],
+    aliases: ['rrole'],
+    expectedArgs: "<@user> <role name>",
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
       const targetUser = message.mentions.users.first()
       if (!targetUser) {

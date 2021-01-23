@@ -6,7 +6,7 @@ module.exports = {
     expectedArgs: "<@user> <reason>",
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
         const mslice = args.slice(0).join(" ")
-        const member = message.guild.members.cache.get(mslice);
+        const member = await client.users.fetch(mslice)
 
         if(!args[0]) return message.channel.send('Please specify a user');
 

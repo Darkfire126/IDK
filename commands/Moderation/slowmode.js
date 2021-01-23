@@ -5,6 +5,7 @@ const ms = require("ms")
             description: "Change slowmode along you are a moderator",
             requiredPermissions: ['MANAGE_MESSAGES'],
             expectedArgs: "<time for slowmode>",
+            aliases: ['sm'],
             callback: async ({ message, args, text, client, prefix, instance }) => {
         if (!args[0]) return message.channel.send('You did not specify a time!').then(m => m.delete({ timeout: 5000}));
 

@@ -4,6 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     description: "Get a cute dog! ",
     category: "Fun",
+    aliases: ['puppy'],
       
     callback: async ({ message, args, text, client, prefix, instance }) => {
         const url = "https://some-random-api.ml/img/dog";

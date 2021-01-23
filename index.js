@@ -83,8 +83,8 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
  client.on('ready', () => {
  // creates an arraylist containing phrases you want your bot to switch through.
  client.user.setPresence({ activity:
-  { name: `.help `,
- type: "STREAMING" }, 
+  { name: `.help || servers`,
+ type: "WATCHING" }, 
   status: webmoblie 
 })
 const status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;

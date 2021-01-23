@@ -4,6 +4,7 @@ module.exports = {
     description: "clear messages along you are a moderator",
     requiredPermissions: ['MANAGE_MESSAGES'],
     expectedArgs: "<messages to delete>",
+    aliases: ['purge'],
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
         if (!args[0]) {
             return message.channel.send(`Please enter a amount 1 to 100`).then(m => m.delete({ timeout: 5000}));

@@ -4,6 +4,8 @@ const { MessageEmbed } = require("discord.js")
 module.exports = {
     category: "Info",
     description: "get discord docs",
+    aliases: ['djdocs'],
+    expectedArgs: "<query>",
     callback: async ({ message, args, text, client, prefix, instance }) => {
         let [query, branch] = args;
 if (!query) return message.channel.send("Please include a search query!");

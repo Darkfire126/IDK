@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js")
 module.exports = {
     category: 'Info',
     description: "Get the bot ping!",
-    aliases: ['pong'],
+    aliases: ['pinging'],
     callback: async ({ message, args, text, client, prefix, instance }) => {
       const msg = await message.channel.send("Pinging...");
       const Embed = new MessageEmbed()

@@ -9,10 +9,10 @@ let answers = [
 ];
 
 module.exports = {
-  commands: '8b',
   category: 'Fun',
   description: 'You already know',
-  aliases: ['8ball', '8b'],
+  aliases: ['8b'],
+  expectedArgs: "<question>",
   callback: async ({ message, args, text, client, prefix, instance }) => {
     let question = args.slice().join(' ');
     var embed = new Embed()

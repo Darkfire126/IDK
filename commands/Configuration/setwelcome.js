@@ -16,6 +16,7 @@ module.exports = {
     category: "Configuration",
     description: "set the welcome! channel",
   requiredPermissions: ['ADMINISTRATOR'],
+  aliases: ['welcomeset'],
   callback: async ({ message, args, text, client, prefix, instance }) => {
     const { guild, channel } = message
 
