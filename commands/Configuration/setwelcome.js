@@ -1,5 +1,5 @@
   
-const welcomeSchema = require('../models/welcome-schema')
+const welcomeSchema = require('../../models/welcome-schema')
 
 const cache = new Map()
 
