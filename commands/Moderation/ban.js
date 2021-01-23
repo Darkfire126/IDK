@@ -8,7 +8,7 @@ module.exports = {
 
         if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('I don\'t have the right permissions.')
 
-        const member = message.mentions.members.first() || message.guild.members.cache.get(args.slice(0).join) || await client.users.fetch(args.slice(0).join);
+        const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || await client.users.fetch(args[0]);
 
         if(!args[0]) return message.channel.send('Please specify a user');
 
