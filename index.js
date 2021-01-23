@@ -8,7 +8,7 @@ const client = new discord.Client({
 
 client.commands = new discord.Collection();
 client.aliases = new discord.Collection();
-//const distube = new DisTube(client, { searchSongs: false, emitNewSongOnly: true });
+client.distube = new DisTube(client, { searchSongs: false, emitNewSongOnly: true });
 client.on('ready', () => {
   // See the "Language Support" section of this documentation
   // An empty string = ignored
@@ -50,10 +50,10 @@ client.on('ready', () => {
       name: 'Info',
       emoji: 'ℹ️'
     },
-    /*{
+    {
       name: 'Music',
       emoji: '🎶'
-    },*/
+    },
     {
       // You can change the default emojis as well
       name: 'Configuration',
@@ -83,8 +83,15 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
   "with JavaScript"
   ]; 
 
-// DisTube event listeners, more in the documentation page
-/*distube
+
+ client.on('ready', () => {
+ // creates an arraylist containing phrases you want your bot to switch through.
+ client.user.setPresence({ activity:
+  { name: 'the .help command',
+ type: "WATCHING" }, 
+  status: webmoblie 
+})
+client.distube
     .on("playSong", (message, queue, song) => message.channel.send(
         `Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user}\n${status(queue)}`
     ))
@@ -97,24 +104,5 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
     .on("addList", (message, queue, playlist) => message.channel.send(
         `Added \`${playlist.name}\` playlist (${playlist.songs.length} songs) to queue\n${status(queue)}`
     ))
-    // DisTubeOptions.searchSongs = true
-    .on("searchResult", (message, result) => {
-        let i = 0;
-        message.channel.send(`**Choose an option from below**\n${result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`);
-    })
-    // DisTubeOptions.searchSongs = true
-    .on("searchCancel", (message) => message.channel.send(`Searching canceled`))
-    .on("error", (message, e) => {
-        console.error(e)
-        message.channel.send("An error encountered: " + e);
-    })*/
- client.on('ready', () => {
- // creates an arraylist containing phrases you want your bot to switch through.
- client.user.setPresence({ activity:
-  { name: 'the .help command',
- type: "WATCHING" }, 
-  status: webmoblie 
-})
-
  });
  client.login(process.env.TOKEN)
