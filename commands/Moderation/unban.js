@@ -11,7 +11,7 @@ let toBan = await client.users.fetch(args[0])
 if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("I need BAN_MEMBERS permission or ADMINISTRATOR permission to execute this command!").then(m => m.delete({ timeout: 5000}));
 
 const reason = args[1] || "There was no reason!";
-
+ 
 message.guild.members.unban(toBan, reason)
 const Messaesda = new MessageEmbed()
 .setTitle(`${toBan} has been unbanned from the server!`)
