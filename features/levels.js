@@ -1,6 +1,6 @@
 const { add, isPast } = require('date-fns')
 const { Message } = require('discord.js')
-const memberSchema = require('../schemas/member-schema')
+const memberSchema = require('../models/member-schema')
 
 module.exports = async (client, instance, isEnabled) => {
     client.on('message', async message => {

@@ -1,4 +1,4 @@
-const memberSchema = require('../schemas/member-schema')
+const memberSchema = require('../models/member-schema')
 
 module.exports = client => {
 
