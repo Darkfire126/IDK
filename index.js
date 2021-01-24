@@ -2,9 +2,20 @@ const discord = require('discord.js');
 require('dotenv').config()
 const DisTube = require('distube');
 const WOKCommands = require("wokcommands")
+const { GiveawaysManager } = require("discord-giveaways")
+
 const client = new discord.Client({
   partials: ['MESSAGE', 'REACTION'],
+  
 });
+
+ 
+client.giveaways = new GiveawaysManager(client, {
+  storage: "../../Downloads/giveaways.json",
+  updateCountdownEvery: 5000,
+  embedColor: `RANDOM`,
+  reaction: '🎉'
+})
 
 client.commands = new discord.Collection();
 client.aliases = new discord.Collection();
@@ -70,6 +81,10 @@ client.on('ready', () => {
       name: 'OWNER',
       emoji: '🅾️',
       hidden: true
+    },
+    {
+      name: 'Giveaway',
+      emoji: '🎉'
     }
   ])
 })
