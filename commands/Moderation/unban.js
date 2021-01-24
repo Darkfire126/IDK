@@ -14,7 +14,7 @@ const reason = args[1] || "There was no reason!";
  
 message.guild.members.unban(toBan, reason)
 const Messaesda = new MessageEmbed()
-.setTitle(`${toBan} has been unbanned from the server!`)
+.setTitle(`${toBan} has been unbanned from the server!`) 
 .setColor('RANDOM')
 message.channel.send(Messaesda).then(m => m.delete({ timeout: 5000}));
 }
