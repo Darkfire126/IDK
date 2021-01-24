@@ -8,7 +8,7 @@ module.exports = {
     category: 'Economy',
     globalCooldown: '1d',
     guildOnly: true,
-    run: async ({ message }) => {
+    run: async ({ message, args, text, client, prefix, instance, arguments }) => {
         const DailyEmbed = new MessageEmbed()
         .setTitle("Added " + message.author.tag + "2k coins")
         .setColor("RANDOM")

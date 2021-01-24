@@ -9,7 +9,7 @@ module.exports = {
     expectedArgs: '<@user> <value>',
     category: 'Economy',
     guildOnly: true,
-    run: async ({ message, args }) => {
+    run: async ({ message, args, text, client, prefix, instance, arguments }) => {
         let target = message.mentions.users.first()
         let noTarget = false
         if (!target) {

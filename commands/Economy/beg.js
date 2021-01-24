@@ -7,7 +7,7 @@ module.exports = {
     category: 'Economy',
     globalCooldown: '5m',
     guildOnly: true,
-    run: async ({ message }) => {
+    run: async ({ message, args, text, client, prefix, instance, arguments }) => {
         const loseMoney = Math.random() > 0.875
         if (loseMoney) {
             const moneyToLose = Math.floor(Math.random() * (200 - 100) + 100)

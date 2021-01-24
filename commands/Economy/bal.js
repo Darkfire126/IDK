@@ -9,7 +9,7 @@ module.exports = {
     description: 'shows your (or the pinged user\'s) balance',
     category: 'Economy',
     guildOnly: true,
-    callback: async ({ message, args, instance }) => {
+    callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
         let target = await getTarget.firstArgOrSelf(message, args, instance)
         target = target instanceof GuildMember ? target.user : target
 

@@ -10,7 +10,7 @@ module.exports = {
     expectedArgs:'<@user> <amount>',
     description: 'adds money to the target user\'s bank',
     category: 'Economy',
-    callback: async ({ message, args, instance }) => {
+    callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
         const target = await getTarget.firstArgPingID(message, args, instance)
         if (!target) return
 
