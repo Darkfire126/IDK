@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js")
 const economy = require("../../util/economy")
-const { MessageEmbed } = require("discord.js")
+
 module.exports = {
     commands: 'daily',
     description: 'Gives you your daily reward of money',
