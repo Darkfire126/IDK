@@ -1,6 +1,6 @@
 const economy = require('../../util/economy')
 const getTarget = require('../../util/get-target')
-const { GuildMember } = require('discord.js')
+const { GuildMember, MessageEmbed } = require('discord.js')
 
 module.exports = {
     commands: ['balance', 'bal', 'coins'],
@@ -14,11 +14,15 @@ module.exports = {
         target = target instanceof GuildMember ? target.user : target
 
         const coins = await economy.getCoins(message.guild.id, target.id)
-
-        message.reply(`${target === message.author ? 'you have' : `${target} has`} ${coins} coins`, {
-            allowedMentions: {
-                users: [message.author.id]
-            }
-        })
+const Messgaess = new MessageEmbed()
+.setTitle(message.author.tag + " Balance")
+.setColor('RANDOM')
+.setDescription(  `${target === message.author ? 'you have' : `${target} has`} ${coins} coins`, {
+    allowedMentions: {
+        users: [message.author.id]
+    }
+})
+        message.channel.send(Messgaess)
+      
     }
 }
