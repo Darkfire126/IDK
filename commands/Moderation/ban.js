@@ -6,7 +6,7 @@ const niceDates = require('../../util/nice-dates')
 
 module.exports = {
     commands: 'ban',
-    expectedArgs: '<user ping|id> <duration|\'forever\'> [reason]',
+    expectedArgs: '<@user> <duration || forever> <reason>',
     minArgs: 2,
     requiredPermissions: ['BAN_MEMBERS'],
     description: 'Bans the targeted user',

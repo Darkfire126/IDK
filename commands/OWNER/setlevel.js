@@ -2,6 +2,7 @@ const { GuildMember } = require('discord.js')
 const levels = require('../../features/levels')
 const memberSchema = require('../../models/member-schema')
 const getTarget = require('../../util/get-target')
+const level = require('../Info/level')
 
 module.exports = {
     commands: 'setlevel',
@@ -19,9 +20,9 @@ module.exports = {
 
         const newInfo = await levels.setLevel(message.guild.id, target.id, levelToSet)
 
-        message.reply(instance.messageHandler.get(message.guild, 'SET_LEVEL_CONFIRMATION', {
+        message.reply(`set ${target}'s level to level ${level}.`), {
             TARGET: target,
             LEVEL: newInfo.level,
-        }))
+        }
     }
 }

@@ -81,7 +81,7 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
 
 
  client.on('ready', () => {
-console.log(`${client.username} has logged in!`)
+console.log(`Sadly has logged in!`)
  client.user.setPresence({ activity:
   { name: `.help || servers`,
  type: "WATCHING" }, 
