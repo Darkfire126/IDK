@@ -1,42 +1,61 @@
 const { MessageEmbed } = require("discord.js")
+const ms = require("ms")
+const guildSchema = require('../../models/guild-schema')
+const tempbanSchema = require("../../models/tempban-schema")
+const niceDates = require('../../util/nice-dates')
+
 module.exports = {
-    category: "Moderation",
-    description: "Ban someone along you are a moderator",
+    commands: 'ban',
+    expectedArgs: '<user ping|id> <duration|\'forever\'> [reason]',
+    minArgs: 2,
     requiredPermissions: ['BAN_MEMBERS'],
-    expectedArgs: "<@user> <reason>",
-    callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
+    description: 'Bans the targeted user',
+    category: 'Moderation',
+    guildOnly: true,
+    callback: async ({ message, args }) => {
+        const [user, timeString, ...reason] = args
+        const target = await message.mentions.users.first() || await message.client.users.fetch(args[0])
+        if (!message.guild.me.hasPermission('BAN_MEMBERS')) return message.reply('I don\'t have permission to ban members.')
+        if (!target) return message.reply('no reference to a user is provided to ban.')
+        if (target === message.author) return message.reply('Why are you trying to ban yourself?')
+        if (target.bannable === false) return message.reply('This member is not bannable by me (usually because of permission level)')
 
-        if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('I don\'t have the right permissions.')
+        const duration = timeString === 'forever' ? null : ms(timeString)
+        
+        const result = guildSchema.findOne({ _id: message.guild.id })
+        const { banDeleteDays } = result
+        message.guild.members.ban(target.id, { reason: reason.join(' '), days: banDeleteDays })
 
-        const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || await client.users.fetch(args[0]);
-
-        if(!args[0]) return message.channel.send('Please specify a user');
-
-        if(!member) return message.channel.send('Can\'t seem to find this user. Sorry \'bout that :/');
-        if(!member.bannable) return message.channel.send('This user can\'t be banned. It is either because they are a mod/admin, or their highest role is higher than mine');
-
-        if(member.id === message.author.id) return message.channel.send('Bruh, you can\'t ban yourself!');
-
-        let reason = args.slice(1).join(" ");
-
-        if(!reason) reason = 'Unspecified';
-
-        member.ban({ days: 7, reason: reason }).catch(err => { 
-          message.channel.send('Something went wrong')
-            console.log(err)
+        if(duration) await tempbanSchema.create({
+            guildId: message.guild.id,
+            userId: target.id,
+            endTime: Date.now() + duration,
         })
 
-        const banembed = new Discord.MessageEmbed()
-        .setTitle('Member Banned')
-        .setThumbnail(member.user.displayAvatarURL())
-        .addField('User Banned', member)
-        .addField('Kicked by', message.author)
-        .addField('Reason', reason)
-        .setFooter('Time kicked', client.user.displayAvatarURL())
-        .setTimestamp()
+        message.reply(`${target} has been banned for the reason \`${reason.length > 0 ? reason.join(' ') : 'no given reason'}\` for ${niceDates(duration) === null ? 'forever' : niceDates(duration)}`)
 
-        message.channel.send(banembed);
+        const dmEmbed = new MessageEmbed()
+            .setTitle(`Banned from ${message.guild}`)
+            .addFields(
+                {
+                    name: 'Action by',
+                    value: message.author,
+                    inline: true,
+                },
+                {
+                    name: 'Reason',
+                    value: reason.join(' '),
+                    inline: true,
+                },
+                {
+                    name: 'Duration',
+                    value: niceDates(duration) === null ? 'Forever' : niceDates(duration),
+                    inline: true,
+                }
+            )
+            .setTimestamp()
 
-
+        target.send(dmEmbed)
+            .catch(() => message.channel.send('DM confirmation could not be sent.'))
     }
 }
