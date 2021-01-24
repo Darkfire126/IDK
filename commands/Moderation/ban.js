@@ -57,5 +57,9 @@ module.exports = {
 
         target.send(dmEmbed)
             .catch(() => message.channel.send('DM confirmation could not be sent.'))
+            try {
+            } catch (error) {
+console.log(error)
+            }
+            }
     }
-}
