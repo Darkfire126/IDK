@@ -1,6 +1,7 @@
 const db = require('../../models/warns')
 const { Message, MessageEmbed } = require('discord.js')
 module.exports = {
+    commands: ['warns', 'warnings'],
     category: 'Moderation',
     expectedArgs: "<Target user's @>",
     description: "view someones warns aslong as you are a Moderator",
