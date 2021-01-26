@@ -44,7 +44,7 @@ client.on('ready', () => {
 // Set your MongoDB connection path
 .setMongoPath(process.env.MONGO_URI)
 // Set the default prefix for your bot, it is . by default
-.setDefaultPrefix('s.')
+.setDefaultPrefix(process.env.PREFIX)
 // Set the embed color for your bot. The default help menu will use this. This hex value can be a string too
 .setColor(0xff0000)
 .setBotOwner('725010310922240007')
