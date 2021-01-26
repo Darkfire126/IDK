@@ -10,6 +10,7 @@ const guildSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    mutedRoleId: optionalString,
     banPurgeDays: {
         type: Number,
         default: 7,
