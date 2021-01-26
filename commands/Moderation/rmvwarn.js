@@ -1,13 +1,14 @@
+
 const db = require('../../models/warns')
-const { Message, MessageEmbed } = require('discord.js')
 module.exports = {
-    commands: ['rmvwarn', 'rwarn'],
+    commands: ['rmvwarn', 'rwarn', 'removewarn', 'deletewarn'],
     category: 'Moderation',
     expectedArgs: "<Target user's @>",
     description: "remove someones warn someone aslong as you are a Administrator",
     requiredPermissions: ['ADMINISTRATOR'],
     expectedArgs: "<@user>",
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
+    
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         if(!user) return message.channel.send('User not found.')
         db.findOne({ guildid : message.guild.id, user: user.user.id}, async(err,data) => {

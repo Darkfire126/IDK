@@ -1,4 +1,7 @@
-const { MessageEmbed } = require("discord.js")
+const db = require('quick.db')
+const ms = require("ms")
+const Discord = require('discord.js')
+const { de } = require('date-fns/locale')
 
 module.exports = {
     category: "Moderation",
@@ -6,25 +9,65 @@ module.exports = {
     requiredPermissions: ['KICK_MEMBERS'],
     expectedArgs: '<users @> <reason> ',
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
-let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+    let mutedrole = db.get(`moderation.${message.guild.id}.muterole`)
+    if(!mutedrole) return message.channel.send(`
+    No Muterole found try doing <your prefix>muterole enable <@mute role id>
+    
+    `)
 
-if(!user) message.channel.send("This user can't be found anywhere in this server").then(m => m.delete({ timeout: 5000}));
+    let toggle = mutedrole.toggle
+    if (!toggle || toggle == null || toggle == false) return message.channel.send(`
+    No Muterole found try doing <your prefix>muterole enable <@mute role id>
+    
+    `)
+    
+    var User = message.mentions.users.first();
+    if(!User) return message.channel.send(`
+    
+    Please mention a user!
+    Usage: <your prefix>mute <@user> <time> <reason>
+    `)
+    db.fetch(`mutes_${user.id}`)
 
-if(user.id === message.author.id) return message.channel.send("You cannot mute yourself").then(m => m.delete({ timeout: 5000}));
 
-let role = message.guild.roles.cache.find(x => x.name === "Muted");
+ let member = await message.guild.members.fetch(User);
 
-if(!role) return message.channel.send("Cannot find the muted role, called Muted (Note make sure this role has no permission to talk in channels!)").then(m => m.delete({ timeout: 5000}));
+ if(!member) return message.reply('They are not in the server!')
+var rawime = args[1];
+var time = ms(rawime)
+if(!time) return message.reply(`
 
-let reason = args.slice(1).join(" ");
-if(reason === null) reason = "Unspecified"
+No time found!
+Usage: <your prefix>mute <@user> <time> <reason>
+`)
 
-user.roles.add(role);
-const conrs = new MessageEmbed()
-.setTitle(`${message.author.tag} has been muted for the following reason: ${reason}`)
-.setColor("RANDOM")
-await message.channel.send(conrs).then(m => m.delete({ timeout: 10000}));
+var reason = args.splice(2).join(' ')
+if(!reason) return message.reply(`
+No reason!
+Usage: <your prefix>mute <@user> <time> <reason>
 
-user.send(`Hello there. You have been muted from ${message.guild.name} for the following reason: ${reason}`);
-}
-}
+
+`)
+
+const embed = new Discord.MessageEmbed()
+.setTitle(`You were muted! in ` + message.guild.name)
+.addField(`Expires:`, rawime, true)
+.addField('Reason', reason, true)
+
+
+
+    user.send(embed);
+
+    const role = message.guild.roles.cache.find(r => r.id === mutedrole.role)
+
+    member.roles.add(role)
+const cosnt = new Discord.MessageEmbed()
+.setTitle(user + ` has been muted!`)
+.setColor('RANDOM')
+    message.channel.send(cosnt)
+    db.add(`mutes_${user.id}`, 1)
+
+     setTimeout(async() => {
+        member.roles.remove(role)
+    }, time);
+    }}

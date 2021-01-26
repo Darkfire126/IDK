@@ -1,5 +1,5 @@
 const db = require('../../models/warns')
-const { Message, MessageEmbed } = require('discord.js')
+
 module.exports = {
     commands: ['clearwarn', 'cwarn', 'clearwarns', 'remove-all-warns'],
     category: 'Moderation',

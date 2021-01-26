@@ -3,7 +3,6 @@ require('dotenv').config()
 const DisTube = require('distube');
 const WOKCommands = require("wokcommands")
 const { GiveawaysManager } = require("discord-giveaways")
-const { token } = require("../yesomn/config.json")
 const client = new discord.Client({
   partials: ['MESSAGE', 'REACTION'],
   
@@ -102,17 +101,4 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
   status: webmoblie 
 })
  })
- client.on("message", async message => {
-  const prefix = process.env.PREFIX
-  if(message.mentions.users.first() === client.user){
-    const embed = new discord.MessageEmbed()
-    .setAuthor(`${message.author.username}` , message.author.displayAvatarURL({dynamic : true}))
-    .setColor("#16E9F3")
-    .setDescription(`Hey there 👋 my prefix for everything is \`${prefix}\`!
-    To get started just do \`${prefix}help\` for commands! Unless one of the server's admins set a prefix please contact them for more info!`)
-    message.channel.send(embed)
-    .then(msg => {
-        msg.delete({ timeout: 15000 })
-    })
-}})
- client.login(token)
+ client.login(process.env.TOKEN)
