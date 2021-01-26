@@ -20,7 +20,7 @@ module.exports = {
 
         const newInfo = await levels.setLevel(message.guild.id, target.id, levelToSet)
 
-        message.reply(`set ${target}'s level to level ${args[1]}.`), {
+        message.reply(`set ${target}'s level to level ${args[2]}.`), {
             TARGET: target,
             LEVEL: newInfo.level,
         }
