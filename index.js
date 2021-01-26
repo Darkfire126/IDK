@@ -19,7 +19,6 @@ client.giveaways = new GiveawaysManager(client, {
 
 client.commands = new discord.Collection();
 client.aliases = new discord.Collection();
-client.distube = new DisTube(client, { searchSongs: false, emitNewSongOnly: true });
 client.on('ready', () => {
   // See the "Language Support" section of this documentation
   // An empty string = ignored
@@ -102,20 +101,6 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
  type: "WATCHING" }, 
   status: webmoblie 
 })
-const status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
+ })
 
-client.distube
-    .on("playSong", (message, queue, song) => message.channel.send(
-        `Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user}\n${status(queue)}`
-    ))
-    .on("addSong", (message, queue, song) => message.channel.send(
-        `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`
-    ))
-    .on("playList", (message, queue, playlist, song) => message.channel.send(
-        `Play \`${playlist.name}\` playlist (${playlist.songs.length} songs).\nRequested by: ${song.user}\nNow playing \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
-    ))
-    .on("addList", (message, queue, playlist) => message.channel.send(
-        `Added \`${playlist.name}\` playlist (${playlist.songs.length} songs) to queue\n${status(queue)}`
-    ))
- });
  client.login(process.env.TOKEN)

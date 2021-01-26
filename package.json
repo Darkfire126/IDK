@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
+    "ascii-table": "0.0.9",
     "axios": "^0.21.1",
     "canvacord": "^5.0.8",
     "canvas": "^2.6.1",
@@ -28,7 +29,8 @@
     "path": "^0.12.7",
     "quick.db": "^7.1.3",
     "slappey": "^3.0.0",
-    "wokcommands": "^1.2.1"
+    "wokcommands": "^1.2.1",
+    "ytdl-core": "^4.4.5"
   },
   "scripts": {
     "dev": "nodemon index.js"

@@ -1,5 +1,5 @@
 const { Message, GuildMember, User } = require("discord.js")
-const WOKCommands = require('wokcommands')
+const WOKCommands = require("wokcommands")
 
 module.exports = {
     /**
