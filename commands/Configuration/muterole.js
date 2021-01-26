@@ -15,10 +15,9 @@ module.exports = {
             
             `)}
   const roledb = require("../../models/muterole")
-const roleid = args[1]
-if(!roleid) return message.channel.send('No roleid for the muterole!')
-if(isNaN(roleid)) return message.channel.send("Muterole id is not a number!")
+
     if(args[0].toLowerCase() === "enable"){
+        const roleid = args[1]
         roledb.findOne({ muteroleid: roleid, guildid: message.guild.id }), async(err, data) => {
             if(err) throw err;
             if(!data) {
