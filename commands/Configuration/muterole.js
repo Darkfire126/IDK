@@ -1,5 +1,5 @@
 
-const guildSchema = require('../../models/guild-schema')
+const guildSchema = require('../../schemas/guild-schema')
 
 module.exports = {
     commands: ['setmutedrole', 'setmuterole'],

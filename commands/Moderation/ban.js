@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js")
 const ms = require("ms")
-const guildSchema = require('../../models/guild-schema')
+const guildSchema = require('../../schemas/guild-schema')
 const tempbanSchema = require("../../models/tempban-schema")
 const niceDates = require('../../util/nice-dates')
 
