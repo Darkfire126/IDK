@@ -10,7 +10,7 @@ module.exports = {
     guildOnly: true,
     run: async ({ message, args, text, client, prefix, instance, arguments }) => {
         const DailyEmbed = new MessageEmbed()
-        .setTitle("Added " + message.author.tag + "2k coins")
+        .setTitle("Added " + message.author.tag + "\n 2k coins")
         .setColor("RANDOM")
         .setDescription("2000 coins have been added to your balance!")
         await economy.addCoins(message.guild.id, message.author.id, 2000)

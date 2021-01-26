@@ -100,5 +100,7 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
  type: "WATCHING" }, 
   status: webmoblie 
 })
+const Membelog = ""
  })
+ 
  client.login(process.env.TOKEN)
