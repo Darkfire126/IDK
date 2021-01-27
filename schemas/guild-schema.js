@@ -14,6 +14,9 @@ const guildSchema = mongoose.Schema({
     banPurgeDays: {
         type: Number,
         default: 7,
-}})
+},
+logChannelID: String,
+guildID: String,
+})
 
 module.exports = mongoose.model('guild-configs', guildSchema)

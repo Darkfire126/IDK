@@ -1,6 +1,6 @@
 const discord = require('discord.js');
 require('dotenv').config()
-const DisTube = require('distube');
+const logs = require('./schemas/guild-schema')
 const WOKCommands = require("wokcommands")
 const Levels = require("discord-xp");
 const { GiveawaysManager } = require("discord-giveaways")
@@ -111,7 +111,30 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
   const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomAmountOfXp);
   if (hasLeveledUp) {
     const user = await Levels.fetch(message.author.id, message.guild.id);
-    message.channel.send(`${message.author}, congratulations! You have leveled up to **${user.level}**. :tada:`).then(m => m.delete({ timeout: 15000}));
+    message.channel.send(`${message.author.username}, congratulations! You have leveled up to **${user.level}**. :tada:`).then(m => m.delete({ timeout: 15000}));
   }
 });
+const { MessageEmbed } = require('discord.js')
+client.on('messageDelete', async (message) => {
+  if (message.partial) await message.fetch();
+  logs.findOne({
+
+    logChannelID: logs.logChannelID,
+    guildID: logs.guildID
+  })
+  console.log(logChannelID, guildID)
+if(!logChannelID, guildID) {
+  return message.channel.send("There is no modlogs!")
+}
+if (message.channel.id === logChannelID.channel.id);
+const embed = new MessageEmbed()
+  .setColor('#0099ff')
+  .setTitle('Message Deleted!')
+  .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
+ .setTimestamp()
+  return message.guild.channels.cache.get(logChannelID.channel).send(embed)
+})
+
+
+
  client.login(process.env.TOKEN)

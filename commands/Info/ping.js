@@ -5,17 +5,25 @@ module.exports = {
     description: "Get the bot ping!",
     aliases: ['pinging'],
     callback: async ({ message, args, text, client, prefix, instance }) => {
-      const msg = await message.channel.send("Pinging...");
-      const Embed = new MessageEmbed()
-        .setTitle("Pong!")
-        .setAuthor(`${message.author.username}` , message.author.displayAvatarURL())
-        .setDescription(
-          `⌛ Latency is ${Math.floor(
-            msg.createdTimestamp - message.createdTimestamp
-          )}ms\n⏲️ API Ping is ${Math.round(client.ws.ping)}`
+      let m = await message.channel.send(
+        new MessageEmbed().setDescription("Pinging").setColor("#9400D3")
+      );
+      let ping = m.createdTimestamp - message.createdTimestamp;
+      let beforeCall = Date.now();
+      let dbping = Date.now() - beforeCall;
+      let embed = new MessageEmbed()
+      .setAuthor(`${message.author.username}` , message.author.displayAvatarURL({dynamic : true}))
+        .setColor(`#16E9F3`)
+        .addField(
+          "Bot Ping",
+          `${ping <= 200 ? "🟢" : ping <= 400 ? "🟡" : "🔴"} ${ping} ms `
         )
-        .setColor('#fb644c');
-      msg.edit(Embed);
-      msg.edit("\u200b");
+        .addField(
+          "Api Ping",
+          `${bot.ws.ping <= 200 ? "🟢" : bot.ws.ping >= 400 ? "🟡" : "🔴"} ${
+            bot.ws.ping
+          } ms`
+        )
+      m.edit(embed)
     }
-};
+}
