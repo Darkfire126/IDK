@@ -1,5 +1,5 @@
 const canvacord = require('canvacord')
-const levels = require('discord-xp')
+const Levels = require('discord-xp')
 const Discord = require('discord.js')
 module.exports = {
     commands: ['leaderboard', 'xp-leaderboard'],
