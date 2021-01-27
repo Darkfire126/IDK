@@ -15,14 +15,17 @@ module.exports = {
          
         if (!user) return message.channel.send("Seems like this user has not earned any xp so far."); // If there isnt such user in the database, we send a message in general.
         const rank = new canvacord.Rank()
-        .setAvatar(message.author.displayAvatarURL({ dynamic: false, format: 'png'}))
-        .setCurrentXP(user.xp)
-        .setLevel(user.level)
-        .setRequiredXP(neededXp)
-        .setStatus(message.member.presence.status)
-        .setProgressBar('RANDOM', 'COLOR')
-        .setUsername(message.author.username)
-        .setDiscriminator('0001')
+        .setAvatar(target.displayAvatarURL({ format: 'png' }))
+        .setCurrentXP(xp)
+        .setLevel(level)
+        .setRank(sortedMembers.indexOf(sortedMembers.find(e => e.userId === target.id)) + 1, 'RANK') // rank is the index of the element whose userId is the same as the target, and added 1 because array indices start at 0
+        .setRequiredXP(neededXP)
+        .setProgressBar('#FFFFFF', 'COLOR', true)
+        .setUsername(target.username)
+        .setDiscriminator(target.discriminator)
+        .setBackground('COLOR', '#36393F')
+        .setOverlay('#36393F', 0, false)
+        .setProgressBar('#e8064d', 'COLOR', true)
         rank.build()
         .then(data => {
             const attachment = new Discord.MessageAttachment(data, 'level.png')
