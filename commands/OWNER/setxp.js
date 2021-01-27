@@ -13,6 +13,6 @@ module.exports = {
     run: async ({ message, args, instance }) => {
         let target = await message.mentions.users.first() || message.author; // Grab the target.
         if (!target) return message.channel.send('No user id!')
-        levels.setLevel(target.id, message.guild.id, args[1]);
-        }
+        levels.setXp(target.id, message.guild.id, args[1]);
     }
+}

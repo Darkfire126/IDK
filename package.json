@@ -11,6 +11,7 @@
     "canvas": "^2.6.1",
     "date-fns": "^2.16.1",
     "discord-giveaways": "^4.4.3",
+    "discord-xp": "^1.1.7",
     "discord.js": "^12.5.1",
     "discord.js-commando": "git+https://github.com/discordjs/Commando.git",
     "distube": "^2.8.8",

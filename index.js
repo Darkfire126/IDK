@@ -2,6 +2,7 @@ const discord = require('discord.js');
 require('dotenv').config()
 const DisTube = require('distube');
 const WOKCommands = require("wokcommands")
+const Levels = require("discord-xp");
 const { GiveawaysManager } = require("discord-giveaways")
 const client = new discord.Client({
   partials: ['MESSAGE', 'REACTION'],
@@ -93,14 +94,24 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
   let TOserver = client.guilds.cache.size; 
 
 
- client.on('ready', () => {
+  client.on('ready', async () => {
   console.log(client.user.tag + ' has logged in.');
  client.user.setPresence({ activity:
   { name: `s.help` ,
  type: "WATCHING" }, 
   status: webmoblie 
 })
-const Membelog = ""
  })
- 
+ Levels.setURL(process.env.MONGO_URI);
+  client.on("message", async (message) => {
+  if (!message.guild) return;
+  if (message.author.bot) return;
+  
+  const randomAmountOfXp = Math.floor(Math.random() * 9) + 1; // Min 1, Max 30
+  const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomAmountOfXp);
+  if (hasLeveledUp) {
+    const user = await Levels.fetch(message.author.id, message.guild.id);
+    message.channel.send(`${message.author}, congratulations! You have leveled up to **${user.level}**. :tada:`).then(m => m.delete({ timeout: 15000}));
+  }
+});
  client.login(process.env.TOKEN)
