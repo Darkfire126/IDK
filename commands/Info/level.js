@@ -8,6 +8,7 @@ module.exports = {
     expectedArgs: '<@user>',
     guildOnly: true,
     run: async ({ message, text }) => {
+
                 const target = message.mentions.users.first() || message.author; // Grab the target.
                 const user = await levels.fetch(target.id, message.guild.id); // Selects the target from the database.
 
@@ -16,10 +17,9 @@ module.exports = {
         if (!user) return message.channel.send("Seems like this user has not earned any xp so far."); // If there isnt such user in the database, we send a message in general.
         const rank = new canvacord.Rank()
         .setAvatar(target.displayAvatarURL({ format: 'png' }))
-        .setCurrentXP(xp)
-        .setLevel(level)
-        .setRank(sortedMembers.indexOf(sortedMembers.find(e => e.userId === target.id)) + 1, 'RANK') // rank is the index of the element whose userId is the same as the target, and added 1 because array indices start at 0
-        .setRequiredXP(neededXP)
+        .setCurrentXP(user.xp)
+        .setLevel(user.level)
+        .setRequiredXP(neededXp)
         .setProgressBar('#FFFFFF', 'COLOR', true)
         .setUsername(target.username)
         .setDiscriminator(target.discriminator)
