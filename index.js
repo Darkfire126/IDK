@@ -100,7 +100,7 @@ const Acr = [
   'wreakng',
   `${client.guilds.cache.size} servers`,
   `${client.channels.cache.size} channels`,
-  `${client.user.cache.size}`,
+  `${client.users.cache.size}`,
   ``
 ]
   client.on('ready', async () => {
