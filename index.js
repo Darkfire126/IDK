@@ -97,11 +97,6 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
 const Acr = [
   'You',
   'type s.help',
-  'wreakng',
-  `${client.guilds.cache.size} servers`,
-  `${client.channels.cache.size} channels`,
-  `${client.users.cache.size}`,
-  ``
 ]
   client.on('ready', async () => {
     let index = 0;
