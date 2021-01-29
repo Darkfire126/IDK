@@ -3,6 +3,7 @@ require('dotenv').config()
 const logs = require('./schemas/guild-schema')
 const WOKCommands = require("wokcommands")
 const Levels = require("discord-xp");
+const express = require('express')
 const { GiveawaysManager } = require("discord-giveaways")
 const client = new discord.Client({
   partials: ['MESSAGE', 'REACTION'],
@@ -93,15 +94,27 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
 
   let TOserver = client.guilds.cache.size; 
 
-
+const Acr = [
+  'You',
+  'type s.help',
+  'wreakng',
+  `${client.guilds.cache.size} servers`,
+  `${client.channels.cache.size} channels`,
+  `${client.user.cache.size}`,
+  ``
+]
   client.on('ready', async () => {
+    let index = 0;
+    setInterval(() => {
+if(index === Acr[index]) index = 0;
+const status = Acr[index];
+
+client.user.setActivity(status, {type: 'WATCHING'})
+index++;
+    }, 5000)
+    client.user.setStatus(webmoblie)
   console.log(client.user.tag + ' has logged in.');
- client.user.setPresence({ activity:
-  { name: `s.help` ,
- type: "WATCHING" }, 
-  status: webmoblie 
-})
- })
+  })
  Levels.setURL(process.env.MONGO_URI);
   client.on("message", async (message) => {
   if (!message.guild) return;
@@ -114,26 +127,26 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
     message.channel.send(`${message.author.username}, congratulations! You have leveled up to **${user.level}**. :tada:`).then(m => m.delete({ timeout: 15000}));
   }
 });
-const { MessageEmbed } = require('discord.js')
-client.on('messageDelete', async (message) => {
-  if (message.partial) await message.fetch();
-  logs.findOne({
+// const { MessageEmbed } = require('discord.js');
+// client.on('messageDelete', async (message) => {
+//   if (message.partial) await message.fetch();
+//   logs.findOne({
 
-    logChannelID: logs.logChannelID,
-    guildID: logs.guildID
-  })
-  console.log(logChannelID, guildID)
-if(!logChannelID, guildID) {
-  return message.channel.send("There is no modlogs!")
-}
-if (message.channel.id === logChannelID.channel.id);
-const embed = new MessageEmbed()
-  .setColor('#0099ff')
-  .setTitle('Message Deleted!')
-  .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
- .setTimestamp()
-  return message.guild.channels.cache.get(logChannelID.channel).send(embed)
-})
+//     logChannelID: logs.logChannelID,
+//     guildID: logs.guildID
+//   })
+//   console.log(logChannelID, guildID)
+// if(!logChannelID, guildID) {
+//   return message.channel.send("There is no modlogs!")
+// }
+// if (message.channel.id === logChannelID.channel.id);
+// const embed = new MessageEmbed()
+//   .setColor('#0099ff')
+//   .setTitle('Message Deleted!')
+//   .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
+//  .setTimestamp()
+//   return message.guild.channels.cache.get(logChannelID.channel).send(embed)
+// })
 
 
 
