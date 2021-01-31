@@ -6,8 +6,8 @@ module.exports = {
     ownerOnly: true,
     minArgs: 1,
     maxArgs: 2,
-    expectedArgs: '<@user> <value>',
-    category: 'Economy',
+    description: 'SMH',
+    category: 'OWNER',
     guildOnly: true,
     run: async ({ message, args, text, client, prefix, instance, arguments }) => {
         let target = message.mentions.users.first()

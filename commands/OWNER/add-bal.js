@@ -8,8 +8,8 @@ module.exports = {
     maxArgs: 2,
     ownerOnly: true,
     expectedArgs:'<@user> <amount>',
-    description: 'adds money to the target user\'s bank',
-    category: 'Economy',
+    description: 'SMH',
+    category: 'OWNER',
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
         const target = await getTarget.firstArgPingID(message, args, instance)
         if (!target) return

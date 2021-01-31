@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "canvacord": "^5.0.8",
     "canvas": "^2.6.1",
+    "ctx": "^0.3.0",
     "date-fns": "^2.16.1",
     "discord-giveaways": "^4.4.3",
     "discord-xp": "^1.1.7",

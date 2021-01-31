@@ -13,9 +13,9 @@ module.exports = {
 const Jobs = ["Model", "Freelance Developer", "Programmer", "Youtuber", "Developer"];
 const Job = Jobs[Math.floor(Math.random() * (Jobs.length))];
 const Messagesagsaad = new MessageEmbed()
-.setTitle(message.author.tag + " Worked")
+.setTitle(message.author.username + " Worked")
 .setColor('RANDOM')
-.setDescription(`You worked as a ${Job} and earned ${amount}`)
+.setDescription(`You worked as a ${Job} and earned $${amount}`)
 message.channel.send(Messagesagsaad)
 return await economy.addCoins(message.guild.id, message.author.id, +amount)
     }}
