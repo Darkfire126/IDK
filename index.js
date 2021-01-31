@@ -122,27 +122,27 @@ index++;
     message.channel.send(`${message.author.username}, congratulations! You have leveled up to **${user.level}**. :tada:`).then(m => m.delete({ timeout: 15000}));
   }
 });
-const { MessageEmbed } = require('discord.js');
-client.on('messageDelete', async (message) => {
-  if (message.partial) await message.fetch();
-  await Guild.findOne({
-    guildID: message.guild.id,
-    logChannelID: channel.id
-}, async (err, guild) => {
-    if (err) console.error(err);
-    if (!guild) {
-      return message.channel.send("Please set a modlog!")
-  }
+// const { MessageEmbed } = require('discord.js');
+// client.on('messageDelete', async (message) => {
+//   if (message.partial) await message.fetch();
+//   await Guild.findOne({
+//     logChannelID: Guild.logChannelID
+// }, async (err, guild) => {
+//     if (err) console.error(err);
+//     if (!guild) {
+//       return message.channel.send("Please set a modlog!")
+//   }
  
-if (message.channel.id === logChannelID.channel.id);
-const embed = new MessageEmbed()
-  .setColor('#0099ff')
-  .setTitle('Message Deleted!')
-  .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
- .setTimestamp()
-  return message.guild.channels.cache.get(logChannelID.channel).send(embed)
-}
-  )})
+// if (message.channel.id === Guild.logChannelID);
+// const embed = new MessageEmbed()
+//   .setColor('#0099ff')
+//   .setTitle('Message Deleted!')
+//   .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
+//  .setTimestamp()
+//   const memes = message.guild.channels.cache.get(Guild.logChannelID)
+//   return Guild.logChannelID.send(embed)
+// }
+  //)})
 
 
 
