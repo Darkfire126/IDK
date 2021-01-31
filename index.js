@@ -1,6 +1,6 @@
 const discord = require('discord.js');
 require('dotenv').config()
-const logs = require('./schemas/guild-schema')
+const Guild = require('./schemas/guild-schema')
 const WOKCommands = require("wokcommands")
 const Levels = require("discord-xp");
 const express = require('express')
@@ -122,26 +122,27 @@ index++;
     message.channel.send(`${message.author.username}, congratulations! You have leveled up to **${user.level}**. :tada:`).then(m => m.delete({ timeout: 15000}));
   }
 });
-// const { MessageEmbed } = require('discord.js');
-// client.on('messageDelete', async (message) => {
-//   if (message.partial) await message.fetch();
-//   logs.findOne({
-
-//     logChannelID: logs.logChannelID,
-//     guildID: logs.guildID
-//   })
-//   console.log(logChannelID, guildID)
-// if(!logChannelID, guildID) {
-//   return message.channel.send("There is no modlogs!")
-// }
-// if (message.channel.id === logChannelID.channel.id);
-// const embed = new MessageEmbed()
-//   .setColor('#0099ff')
-//   .setTitle('Message Deleted!')
-//   .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
-//  .setTimestamp()
-//   return message.guild.channels.cache.get(logChannelID.channel).send(embed)
-// })
+const { MessageEmbed } = require('discord.js');
+client.on('messageDelete', async (message) => {
+  if (message.partial) await message.fetch();
+  await Guild.findOne({
+    guildID: message.guild.id,
+    logChannelID: channel.id
+}, async (err, guild) => {
+    if (err) console.error(err);
+    if (!guild) {
+      return message.channel.send("Please set a modlog!")
+  }
+ 
+if (message.channel.id === logChannelID.channel.id);
+const embed = new MessageEmbed()
+  .setColor('#0099ff')
+  .setTitle('Message Deleted!')
+  .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
+ .setTimestamp()
+  return message.guild.channels.cache.get(logChannelID.channel).send(embed)
+}
+  )})
 
 
 
