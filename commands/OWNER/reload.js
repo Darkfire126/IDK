@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js")
 module.exports = {
+    commands: ['reload', 'suck', 'cock', 'restart'],
     category: "OWNER",
     description: "SMH",
     ownerOnly: true,

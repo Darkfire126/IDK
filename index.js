@@ -142,8 +142,6 @@ index++;
 //   const memes = message.guild.channels.cache.get(Guild.logChannelID)
 //   return Guild.logChannelID.send(embed)
 // }
-  //)})
-
 
 
  client.login(process.env.TOKEN)
