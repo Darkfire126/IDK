@@ -11,7 +11,7 @@ module.exports = {
 
     if (!timeuser)
       return message.reply(":x: You should enter time EXAMPLE: 1m 1s 1d");
-      if(isNaN(timeuser)) return User.send("You idiot make your time number noob")
+
     if (!reason) return message.reply(":x: You should enter reason");
 
     db.set(`remind.${message.author.id}`, Date.now() + ms(timeuser));
