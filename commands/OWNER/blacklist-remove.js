@@ -1,4 +1,4 @@
-const blacklist = require('../../models/blacklist')
+const blacklist = require('../../models/Schema')
 
 module.exports = {
     commands: ['smh-r', 'blacklist-remove', 'bl-r'],

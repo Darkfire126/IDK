@@ -147,9 +147,10 @@ const { MessageEmbed } = require('discord.js');
 //   return Guild.logChannelID.send(embed)
 //    })
 //   })
-client.on('message', () => {
-  const blacklist = require('./models/blacklist')
-  blacklist.findOne({ id : message.author.id }, async(err, data) => {
+client.on('message', async(message) => {
+  const { MessageEmbed } = require('discord.js');
+  const blacklist = require('./models/Schema')
+  blacklist.findOneAndUpdate({ id : message.author.id }, async(err, data) => {
     if(err) throw err;
     if(data) {
       const errorE = new MessageEmbed()
