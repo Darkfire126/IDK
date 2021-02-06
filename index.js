@@ -147,9 +147,12 @@ const { MessageEmbed } = require('discord.js');
 //   return Guild.logChannelID.send(embed)
 //    })
 //   })
+const precies = 's.' || '.' || '!' || '/' || '?' || '>' || '>>' || '//' || '??' || '!!' || 's!' || 'x!'
 client.on('message', async(message) => {
+ 
   const { MessageEmbed } = require('discord.js');
   const blacklist = require('./models/Schema')
+  if (!message.content.startsWith(prefix)) return;
   blacklist.findOne({ id : message.author.id }, async(err, data) => {
     if(err) throw err;
     if(data) {
