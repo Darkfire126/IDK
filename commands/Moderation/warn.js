@@ -34,8 +34,9 @@ module.exports = {
             data.save()
         });
         user.send(new MessageEmbed()
-            .setDescription(`You have been warned for ${reason}` + `${message.guild.name}`)
+            .setDescription(`You have been warned for ${reason}`)
             .setColor("RED")
+            .setFooter(`You have been warned in ${message.guild.name}`)
         )
         message.channel.send(new MessageEmbed()
             .setDescription(`Warned ${user} for ${reason}`).setColor('BLUE')

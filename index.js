@@ -130,7 +130,7 @@ index++;
 // client.on('messageDelete', async (message) => {
 //   if (message.partial) await message.fetch();
 //   await Guild.findOne({
-//     logChannelID: Guild.logChannelID
+//     logChannelID
 // }, async (err, guild) => {
 //     if (err) console.error(err);
 //     if (!guild) {
@@ -145,7 +145,8 @@ index++;
 //  .setTimestamp()
 //   const memes = message.guild.channels.cache.get(Guild.logChannelID)
 //   return Guild.logChannelID.send(embed)
-// }
+//    })
+//   })
 
 
  client.login(process.env.TOKEN)
