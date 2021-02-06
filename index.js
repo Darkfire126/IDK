@@ -126,7 +126,7 @@ index++;
     message.channel.send(`${message.author.username}, congratulations! You have leveled up to **${user.level}**. :tada:`).then(m => m.delete({ timeout: 15000}));
   }
 });
-// const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 // client.on('messageDelete', async (message) => {
 //   if (message.partial) await message.fetch();
 //   await Guild.findOne({
@@ -147,6 +147,19 @@ index++;
 //   return Guild.logChannelID.send(embed)
 //    })
 //   })
+client.on('message', () => {
+  const blacklist = require('./models/blacklist')
+  blacklist.findOne({ id : message.author.id }, async(err, data) => {
+    if(err) throw err;
+    if(data) {
+      const errorE = new MessageEmbed()
+      .setTitle('You are blacklisted!')
+      .setColor('#000000')
+      .setDescription('You are blacklisted from using commands!')
 
+      return message.channel.send(errorE).then(m => m.delete({ timeout: 5000}));
+
+
+}})})
 
  client.login(process.env.TOKEN)
