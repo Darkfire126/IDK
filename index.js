@@ -150,7 +150,7 @@ const { MessageEmbed } = require('discord.js');
 client.on('message', async(message) => {
   const { MessageEmbed } = require('discord.js');
   const blacklist = require('./models/Schema')
-  blacklist.findOneAndUpdate({ id : message.author.id }, async(err, data) => {
+  blacklist.findOne({ id : message.author.id }, async(err, data) => {
     if(err) throw err;
     if(data) {
       const errorE = new MessageEmbed()
