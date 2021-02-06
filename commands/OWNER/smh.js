@@ -1,7 +1,7 @@
 
 
 module.exports = {
-    commands: 'setlevel',
+    commands: ['smh', 'blacklist', 'bl'],
     category: 'OWNER',
     description: 'Owner only command that sets the level of a user',
     ownerOnly: true,
