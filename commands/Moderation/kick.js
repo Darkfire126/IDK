@@ -12,6 +12,7 @@ module.exports = {
         const toKick = await message.mentions.users.first() || await message.client.users.fetch(args[0])
         if(!toKick) return message.channel.send("No user found make sure to ping them!").then(m => m.delete({ timeout: 5000}));
         let reason = args.slice(1).join(" ") || "There was no reason";
+        if(toKick.id === message.author.id) return message.channel.send("Why warn yourself?")
         if(!toKick.kickable) return message.channel.send(`${toKick} is not able to be kicked!`).then(m => m.delete({ timeout: 5000}));
         toKick.kick(reason)
         const mss = new MessageEmbed()
