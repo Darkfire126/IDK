@@ -20,8 +20,8 @@ module.exports = {
         )
         .addField(
           "Api Ping",
-          `${bot.ws.ping <= 200 ? "🟢" : bot.ws.ping >= 400 ? "🟡" : "🔴"} ${
-            bot.ws.ping
+          `${client.ws.ping <= 200 ? "🟢" : client.ws.ping >= 400 ? "🟡" : "🔴"} ${
+            client.ws.ping
           } ms`
         )
       m.edit(embed)

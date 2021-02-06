@@ -85,6 +85,10 @@ client.on('ready', () => {
     {
       name: 'Giveaway',
       emoji: '🎉'
+    },
+    {
+      name: "Support",
+      emoji: '🧾'
     }
   ])
 })
