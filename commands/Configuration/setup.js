@@ -22,7 +22,7 @@ module.exports = {
     let collector = await message.channel.awaitMessages(filter, options);
     let answer = collector.first().content;
     message.channel.send('**Starting setup process... Enter `cancel` anytime to end the process.**')
-    message.channel.send("I am going to make moderation logs, and type in the name of the lowest role that can view it, DO NOT PING IT, say the name of it! " `Note: case sensitive`)
+    message.channel.send("I am going to make moderation logs, and type in the name of the lowest role that can view it, DO NOT PING IT, say the name of it! `Note: case sensitive`")
     if (answer === 'cancel' || answer === 'Cancel') {
         message.channel.send('**Setup process ended, requested by administrator.**')
         return;

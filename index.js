@@ -139,23 +139,4 @@ const embed = new MessageEmbed()
   return channelsname.send(embed)
 
    })
-const precies = 's.' || '.' || '!' || '/' || '?' || '>' || '>>' || '//' || '??' || '!!' || 's!' || 'x!'
-client.on('message', async(message) => {
-  const db = require("quick.db")
-  let blacklist = await db.fetch(`blacklist_${message.author.id}`)
-
-  const { MessageEmbed } = require('discord.js');
-  if (!message.content.startsWith(prefix)) return;
- 
-
-      const errorE = new MessageEmbed()
-      .setTitle('You are blacklisted!')
-      .setColor('#000000')
-      .setDescription('You are blacklisted from using commands!')
-
-      if (blacklist === "Blacklisted") return message.channel.send(errorE)
-
-   
-})
-
  client.login(process.env.TOKEN)
