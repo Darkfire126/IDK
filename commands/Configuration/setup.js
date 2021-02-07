@@ -6,7 +6,10 @@ module.exports = {
     guildOnly: true,
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
    const discord = require('discord.js')
-   
+   const filter = msg => msg.author.id === message.author.id;
+   const options = {
+       max: 1
+   }
    
         const users = message.author.tag;
    const Errore = new discord.MessageEmbed()
