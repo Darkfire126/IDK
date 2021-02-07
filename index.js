@@ -127,26 +127,18 @@ index++;
   }
 });
 const { MessageEmbed } = require('discord.js');
-// client.on('messageDelete', async (message) => {
-//   if (message.partial) await message.fetch();
-//   await Guild.findOne({
-//     logChannelID
-// }, async (err, guild) => {
-//     if (err) console.error(err);
-//     if (!guild) {
-//       return message.channel.send("Please set a modlog!")
-//   }
- 
-// if (message.channel.id === Guild.logChannelID);
-// const embed = new MessageEmbed()
-//   .setColor('#0099ff')
-//   .setTitle('Message Deleted!')
-//   .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
-//  .setTimestamp()
-//   const memes = message.guild.channels.cache.get(Guild.logChannelID)
-//   return Guild.logChannelID.send(embed)
-//    })
-//   })
+client.on('messageDelete', async (message) => {
+  if (message.partial) await message.fetch();
+const channelsname = message.guild.channels.cache.find(channel => channel.name === "S-modlog")
+const embed = new MessageEmbed()
+  .setColor('#0099ff')
+  .setTitle('Message Deleted!')
+  .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
+ .setTimestamp()
+ if(!channelsname) return;
+  return channelsname.send(embed)
+
+   })
 const precies = 's.' || '.' || '!' || '/' || '?' || '>' || '>>' || '//' || '??' || '!!' || 's!' || 'x!'
 client.on('message', async(message) => {
   const db = require("quick.db")
