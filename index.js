@@ -149,21 +149,21 @@ const { MessageEmbed } = require('discord.js');
 //   })
 const precies = 's.' || '.' || '!' || '/' || '?' || '>' || '>>' || '//' || '??' || '!!' || 's!' || 'x!'
 client.on('message', async(message) => {
- 
+  const db = require("quick.db")
+  let blacklist = await db.fetch(`blacklist_${message.author.id}`)
+
   const { MessageEmbed } = require('discord.js');
-  const blacklist = require('./models/Schema')
   if (!message.content.startsWith(prefix)) return;
-  blacklist.findOne({ id : message.author.id }, async(err, data) => {
-    if(err) throw err;
-    if(data) {
+ 
+
       const errorE = new MessageEmbed()
       .setTitle('You are blacklisted!')
       .setColor('#000000')
       .setDescription('You are blacklisted from using commands!')
 
-      return message.channel.send(errorE).then(m => m.delete({ timeout: 5000}));
+      if (blacklist === "Blacklisted") return message.channel.send(errorE)
 
-
-}})})
+   
+})
 
  client.login(process.env.TOKEN)
