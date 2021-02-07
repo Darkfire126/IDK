@@ -129,7 +129,7 @@ index++;
 const { MessageEmbed } = require('discord.js');
 client.on('messageDelete', async (message) => {
   if (message.partial) await message.fetch();
-const channelsname = message.guild.channels.cache.find(channel => channel.name === "S-modlog")
+const channelsname = message.guild.channels.cache.find(channel => channel.name === "s-modlog")
 const embed = new MessageEmbed()
   .setColor('#0099ff')
   .setTitle('Message Deleted!')
