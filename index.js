@@ -140,13 +140,13 @@ const embed = new MessageEmbed()
 
    })
 
-   client.on('guildMemberAdd', async(message) => {
+   client.on('guildMemberAdd', async(message, member) => {
     const channelsname = message.guild.channels.cache.find(channel => channel.name === "s-modlog")
-    const embed = new MessageEmbed()
-      .setColor('#0099ff')
-      .setTitle('New Member!')
-      .setDescription(`New member joined!`)
-     .setTimestamp()
+    let emembed = new MessageEmbed()
+    .setAuthor(member.user.username, member.user.avatarURL())
+    .setColor("#ff2050")
+    .setThumbnail(member.user.avatarURL())
+    .setDescription(`New member ALERT! this server now has ` + message.guild.users.cache.size + " users!");
      if(!channelsname) return;
       return channelsname.send(embed)
     
