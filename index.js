@@ -133,7 +133,7 @@ const channelsname = message.guild.channels.cache.find(channel => channel.name =
 const embed = new MessageEmbed()
   .setColor('#0099ff')
   .setTitle('Message Deleted!')
-  .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n ${message.content}`)
+  .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n **Content:** ${message.content}`)
  .setTimestamp()
  if(!channelsname) return;
   return channelsname.send(embed)
