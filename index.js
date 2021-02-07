@@ -139,4 +139,16 @@ const embed = new MessageEmbed()
   return channelsname.send(embed)
 
    })
+
+   client.on('guildMemberAdd', async(message) => {
+    const channelsname = message.guild.channels.cache.find(channel => channel.name === "s-modlog")
+    const embed = new MessageEmbed()
+      .setColor('#0099ff')
+      .setTitle('New Member!')
+      .setDescription(`New member joined!`)
+     .setTimestamp()
+     if(!channelsname) return;
+      return channelsname.send(embed)
+    
+   })
  client.login(process.env.TOKEN)
