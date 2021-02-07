@@ -5,5 +5,9 @@ module.exports = {
     description: "SMH",
     ownerOnly: true,
     callback: async ({ message, args, text, client, prefix, instance }) => {
+   
+        client.emit('guildMemberAdd', message.member)
+
+   
     }
     }
