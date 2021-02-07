@@ -148,6 +148,9 @@ const embed = new MessageEmbed()
     .setThumbnail(member.user.avatarURL())
     .setDescription(`New member ALERT! this server now has ` + message.guild.users.cache.size + " users!");
      if(!channelsname) return;
+     const channelsname2 = message.guild.channels.cache.find(channel => channel.name === "s-welcome")
+     if(!channelsname2) return;
+      channelsname2.send(embed)
       return channelsname.send(embed)
     
    })
