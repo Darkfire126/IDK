@@ -31,6 +31,8 @@ client.on('message', async() => {
     if (listed === true) return message.channel.send(message.author.tag, " Is blacklisted")
   })
 })
+client.on('message', async() => {
+  })
 client.on('ready', () => {
   // See the "Language Support" section of this documentation
   // An empty string = ignored
