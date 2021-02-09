@@ -12,7 +12,7 @@ module.exports = {
    const Messafe = new discord.MessageEmbed()
    .setTitle("New Report By, " + message.author.id + ", " + message.author.username + " ")
    .setColor('RANDOM')
-   .setDescription(slice)
+   .setDescription( ` **Problem:**`+ `\n `, slice)
    .setFooter('Report')
    client.users.cache.get('725010310922240007').send(Messafe);
   message.author.send("Ok report sent, please do not spam it.")
