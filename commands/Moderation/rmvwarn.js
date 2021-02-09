@@ -1,4 +1,4 @@
-
+const {MessageEmbed} = require('discord.js')
 const db = require('../../models/warns')
 module.exports = {
     commands: ['rmvwarn', 'rwarn', 'removewarn', 'deletewarn'],
@@ -11,6 +11,16 @@ module.exports = {
     
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         if(!user) return message.channel.send('User not found.')
+        const messae = new MessageEmbed()
+        .setTitle(' :warning: ERROR ERROR :warning: ')
+        .setColor('RED')
+        .setDescription('No data FOUND, No warnings found!')
+        .setTimestamp()
+        const messaeg = new MessageEmbed()
+        .setTitle(' :thumbsup: Done :thumbsup: ')
+        .setColor('Black')
+        .setDescription(`Removed ${user.user.name} warn, There tag + Id ${user.user.id}, ${user.user.tag}`)
+        .setTimestamp()
         db.findOne({ guildid : message.guild.id, user: user.user.id}, async(err,data) => {
             if(err) throw err;
             if(data) {
@@ -19,7 +29,7 @@ module.exports = {
                 message.channel.send('deleted the warn')
                 data.save()
             } else {
-                message.channel.send('This user does not have any warns in this server!')
+                message.channel.send(messae)
             }
         })
     }

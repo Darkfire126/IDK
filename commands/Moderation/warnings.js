@@ -9,6 +9,12 @@ module.exports = {
     requiredPermissions: ['KICK_MEMBERS'],
     expectedArgs: "<@user>",
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
+        const messae = new MessageEmbed()
+        .setTitle(' :warning: ERROR ERROR :warning: ')
+        .setColor('RED')
+        .setDescription('No data FOUND!')
+        .setTimestamp()
+
       const user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
       if(!user) return message.channel.send('User not found.')
       const reason = args.slice(1).join(" ")
@@ -20,13 +26,13 @@ module.exports = {
                   .setDescription(
                       data.content.map(
                           (w, i) => 
-                          `\`${i + 1}\` | Moderator : ${message.guild.members.cache.get(w.moderator).user.tag}\nReason : ${w.reason}`
+                          `\`${i + 1}\` |  Moderator  : ${message.guild.members.cache.get(w.moderator).user.tag}\nReason : ${w.reason}`
                       )
                   )
                   .setColor("BLUE")
               )
           } else {
-              message.channel.send('User has no data')
+              message.channel.send(messae)
           }
 
       })

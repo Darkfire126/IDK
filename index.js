@@ -126,32 +126,7 @@ index++;
     message.channel.send(`${message.author.username}, congratulations! You have leveled up to **${user.level}**. :tada:`).then(m => m.delete({ timeout: 15000}));
   }
 });
-const { MessageEmbed } = require('discord.js');
-client.on('messageDelete', async (message) => {
-  if (message.partial) await message.fetch();
-const channelsname = message.guild.channels.cache.find(channel => channel.name === "s-modlog")
-const embed = new MessageEmbed()
-  .setColor('#0099ff')
-  .setTitle('Message Deleted!')
-  .setDescription(`Message deleted in <#${message.channel.id}> by **${message.author.username}** \n **Content:** ${message.content}`)
- .setTimestamp()
- if(!channelsname) return;
-  return channelsname.send(embed)
 
-   })
 
-   client.on('guildMemberAdd', async(message, member) => {
-    const channelsname = message.guild.channels.cache.find(channel => channel.name === "s-modlog")
-    let emembed = new MessageEmbed()
-    .setAuthor(member.user.username, member.user.avatarURL())
-    .setColor("#ff2050")
-    .setThumbnail(member.user.avatarURL())
-    .setDescription(`New member ALERT! this server now has ` + message.guild.users.cache.size + " users!");
-     if(!channelsname) return;
-     const channelsname2 = message.guild.channels.cache.find(channel => channel.name === "s-welcome")
-     if(!channelsname2) return;
-      channelsname2.send(embed)
-      return channelsname.send(embed)
-    
-   })
+
  client.login(process.env.TOKEN)
