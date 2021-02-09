@@ -1,4 +1,4 @@
-
+const fs = require('fs')
 const Discord = require('discord.js')
 const db = require('quick.db')
 module.exports = {
@@ -12,6 +12,17 @@ module.exports = {
        const blacklistObject = {
          userTag: message.author.tag
        };
-       let blacklist;
+     let blacklist = await JSON.parse(fs.readFileSync(`../../blacklist.
+     json`, 'utf-8'));
+     if(!blacklist) return console.warn('No blacklist.json')
+     if(!blacklist[user.id]) blacklist[user] = 
+     blacklistObject;
+
+     try {
+       await fs.writeFile('../../blacklist.json', JSON.stringify
+       (blacklist, null, 2))
+     } catch (err) {
+      return console.log(err)
+     }
+     }
       }
-    }

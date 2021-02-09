@@ -1,7 +1,6 @@
 const discord = require('discord.js');
 require('dotenv').config()
 const Guild = require('./schemas/guild-schema')
-const WOKCommands = require("wokcommands")
 const Levels = require("discord-xp");
 const express = require('express')
 const { GiveawaysManager } = require("discord-giveaways")
@@ -20,6 +19,18 @@ client.giveaways = new GiveawaysManager(client, {
 
 client.commands = new discord.Collection();
 client.aliases = new discord.Collection();
+const WOKCommands = require("wokcommands")
+const prfxs = '.' || 's.' || './' || '/.' || 's./' || 's..' || '..' || '//' || '/s.' || '}{' || '}' || '{' || '{}' || '}]' || '{]' || '}[' || ']{' || '[}' || '>>>' || '>>' || '>' || '>>>>' || '//' || '/' || '!' || '!!' || '!!!' || '!!!!' || '?' || '?/' || '?!' || '!?' || '!!??' || '??'|| '>?!'|| '>!'|| '>/'|| '??'|| '???'
+client.on('message', async() => {
+  if(!message.content.startsWith(prfxs) || message.author.bot) return;
+  const blacklist = require('./blackist.json')
+  const blacklistUsers = Object.keys(blacklist)
+  let listed = false;
+  blacklistUsers.forEach(id => {
+    if(message.author.id === id) return listed = true
+    if (listed === true) return message.channel.send(message.author.tag, " Is blacklisted")
+  })
+})
 client.on('ready', () => {
   // See the "Language Support" section of this documentation
   // An empty string = ignored
