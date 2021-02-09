@@ -6,6 +6,7 @@ module.exports = {
     ownerOnly: true,
     callback: async ({ message, args, text, client, prefix, instance }) => {
         message.delete()
+     
         const messageToSay = args.join(" ")
         const embed = new MessageEmbed()
 .setTitle(`...`)
@@ -14,7 +15,14 @@ module.exports = {
 .setTimestamp()
 .setColor('RANDOM')
 try {
-    await message.channel.send(embed);
+    if(args[0] === '--noembed') {
+        messageToSay = args.slice(1).join(' ')
+        await message.channel.send(`${messageToSay}`)
+    }
+    if(!args[0] === '--noembed') {
+        messageToSay = args.join(' ')
+        await message.channel.send(embed);
+    }
 } catch(error) {
     console.log(error)
     message.channel.send("I cannot say that!")

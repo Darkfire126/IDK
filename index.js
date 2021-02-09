@@ -89,6 +89,11 @@ client.on('ready', () => {
     {
       name: "Support",
       emoji: '🧾'
+    },
+    {
+      name: "Guild Owner Fun!",
+      emoji: '😈',
+      hidden: true
     }
   ])
 })
