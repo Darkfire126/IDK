@@ -27,7 +27,7 @@ client.on('message', async() => {
   const blacklistUsers = Object.keys(blacklist)
   let listed = false;
   blacklistUsers.forEach(id => {
-    if(message.author.id === id) return listed = true
+    if(message.author.id === id) listed = true
     if (listed === true) return message.channel.send(message.author.tag, " Is blacklisted")
   })
 })
