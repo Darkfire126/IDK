@@ -20,7 +20,7 @@ module.exports = {
         const messaeg = new MessageEmbed()
         .setTitle(' :thumbsup: Done :thumbsup: ')
         .setColor('Black')
-        .setDescription(`Cleared ${user.user.name} warns, There tag + Id ${user.user.id}, ${user.user.tag}`)
+        .setDescription(`Cleared ${user.user.username} warns, There tag + Id ${user.user.id}, ${user.user.tag}`)
         .setTimestamp()
         db.findOne({ guildid : message.guild.id, user: user.user.id}, async(err,data) => {
             if(err) throw err;
