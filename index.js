@@ -132,4 +132,4 @@ index++;
 
 
 
-if(client.shard.ids[0] === 0) client.login(process.env.TOKEN)
+client.login(process.env.TOKEN)
