@@ -36,7 +36,7 @@ client.on('ready', () => {
   }
 
   // Initialize WOKCommands with specific folders and MongoDB
- new WOKCommands(client, {
+ if(client.shard.ids[0] === 0) new WOKCommands(client, {
     commandsDir: 'commands',
     featureDir: 'features',
     messagesPath,// Show start up warnings
@@ -100,10 +100,12 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
   let TOserver = client.guilds.cache.size; 
 
 const Acr = [
-  'You',
-  'type s.help',
+'Nothing',
+'errors go BRRRRRRRRRRRR',
+'My developer go crazy',
+'4mil lines of code.'
 ]
-  client.on('ready', async () => {
+if(client.shard.ids[0] === 0) client.on('ready', async () => {
     let index = 0;
     setInterval(() => {
 if(index === Acr[index]) index = 0;
@@ -130,4 +132,4 @@ index++;
 
 
 
- client.login(process.env.TOKEN)
+if(client.shard.ids[0] === 0) client.login(process.env.TOKEN)

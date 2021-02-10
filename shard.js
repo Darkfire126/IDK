@@ -1,12 +1,10 @@
+const { ShardingManager } = require('discord.js')
 require('dotenv').config()
-const {ShardingManager} = require('discord.js')
-const shards = new ShardingManager("./index.js", {
-    token: process.env.TOKEN, // If your token was inside .env, use process.env
-    totalShards: "auto"
+const token = 'Nzk5Nzc5NDk1NTgxODQzNTc1.YAIisg.mp3aYxzAQZ0ktD571u_hkPqPAYI';
+const manager = new ShardingManager('./index.js', {
+   token,
+    totalShards: 2
 });
- 
-shards.on("shardCreate", shard => {
-    console.log(`[${new Date().toString().split(" ", 5).join(" ")}] Launched shard #${shard.id}`);
-});
- 
-shards.spawn(shards.totalShards, 10000); // For safety reason, try to use 10 seconds to respawn the shard.
+
+manager.spawn();
+manager.on('shardCreate', shard => console.log(`Shard #${shard.id} is online!.`));
