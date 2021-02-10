@@ -2,7 +2,7 @@
   "name": "idk",
   "version": "1.0.0",
   "description": "yees",
-  "main": "index.js",
+  "main": "shard.js",
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "ascii-table": "0.0.9",
