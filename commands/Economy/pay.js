@@ -12,7 +12,7 @@ module.exports = {
     maxArgs: 2,
     category: 'Economy',
     guildOnly: true,
-    run: async ({ message, args, text, client, prefix, instance, arguments }) => {
+    run: async ({ message, args, instance }) => {
         const userBal = await economy.getCoins(message.guild.id, message.author.id)
         let target = await getTarget.firstArgPingID(message, args, instance)
         target = target instanceof GuildMember ? target.user : target

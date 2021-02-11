@@ -18,4 +18,5 @@ const Messagesagsaad = new MessageEmbed()
 .setDescription(`You worked as a ${Job} and earned $${amount}`)
 message.channel.send(Messagesagsaad)
 return await economy.addCoins(message.guild.id, message.author.id, +amount)
-    }}
+    }
+}

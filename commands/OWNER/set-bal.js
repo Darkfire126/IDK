@@ -1,13 +1,15 @@
+const economy = require("../../util/economy")
+
 module.exports = {
     commands: ['set-bal', 'setbal'],
     description: 'Bot Admin only command that sets a user\'s balance in a guild',
     ownerOnly: true,
     minArgs: 1,
     maxArgs: 2,
-    description: 'SMH',
-    category: 'OWNER',
+    expectedArgs: '<@user> <value>',
+    category: 'Economy',
     guildOnly: true,
-    run: async ({ message, args, text, client, prefix, instance, arguments }) => {
+    run: async ({ message, args }) => {
         let target = message.mentions.users.first()
         let noTarget = false
         if (!target) {

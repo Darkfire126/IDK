@@ -1,5 +1,3 @@
-  
-const { MessageEmbed } = require("discord.js")
 const economy = require("../../util/economy")
 
 module.exports = {
@@ -9,12 +7,8 @@ module.exports = {
     category: 'Economy',
     globalCooldown: '1d',
     guildOnly: true,
-    run: async ({ message, args, text, client, prefix, instance, arguments }) => {
-        const DailyEmbed = new MessageEmbed()
-        .setTitle("Added " + message.author.tag + "\n 2k coins")
-        .setColor("RANDOM")
-        .setDescription("2000 coins have been added to your balance!")
+    run: async ({ message }) => {
         await economy.addCoins(message.guild.id, message.author.id, 2000)
-        return message.channel.send(DailyEmbed)
+        return message.reply('2000 coins have been added to your balance!')
     }
 }
