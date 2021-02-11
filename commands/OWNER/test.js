@@ -5,15 +5,10 @@ module.exports = {
     description: "SMH",
     ownerOnly: true,
     callback: async ({ message, args, text, client, prefix, instance }) => {
-   const name = args.slice(1).join(" ")
-        message.guild.channels
-        .create(name, {
-          type: 'text',
-        })
-        .then((channel) => {
-          const categoryId = args[0]
-          channel.setParent(categoryId)
-        })
+       const {channel} = message
+       
+       
+        channel.setTopic(args.slice(0).join)
     }
 
    
