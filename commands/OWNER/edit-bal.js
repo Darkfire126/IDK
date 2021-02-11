@@ -11,13 +11,7 @@ module.exports = {
 
         const coins = args[1]
         if (isNaN(coins)) return message.reply('Please provide a valid number of coins.')
-        if(args[0] == 'g') {
         const newCoins = await economy.addCoins(message.guild.id, target.id, coins)
         message.reply(`You have given ${target} ${coins} ${coins == 1 ? 'coin' : 'coins'}. They now have ${newCoins} ${newCoins == 1 ? 'coin' : 'coins'}.`)
         }
-        if(args[0] == 'r') {
-            const rCoins = economy.addCoins(message.guild.id, target, -coins)
-            message.reply('Consider it done!')
-        }
     }
-}
