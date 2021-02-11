@@ -1,17 +1,22 @@
-const { GuildMember } = require("discord.js")
-const economy = require("../../util/economy")
-const getTarget = require("../../util/get-target")
-
 module.exports = {
+    commands: ['set-bal', 'setbal'],
+    description: 'Bot Admin only command that sets a user\'s balance in a guild',
     ownerOnly: true,
+    minArgs: 1,
+    maxArgs: 2,
     description: 'SMH',
     category: 'OWNER',
-    callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
-        const target = await getTarget.firstArgPingID(message, args, instance)
-        if (!target) return
-        const coins = args[1]
-        if (isNaN(coins)) return message.reply('Please provide a valid number of coins.')
-        const newCoins = await economy.addCoins(message.guild.id, target.id, coins)
-        message.reply(`You have given ${target} ${coins} ${coins == 1 ? 'coin' : 'coins'}. They now have ${newCoins} ${newCoins == 1 ? 'coin' : 'coins'}.`)
+    guildOnly: true,
+    run: async ({ message, args, text, client, prefix, instance, arguments }) => {
+        let target = message.mentions.users.first()
+        let noTarget = false
+        if (!target) {
+            noTarget = true
+            target = message.author
         }
+        const coins = noTarget ? args[0] : args[1]
+        if (isNaN(coins)) return message.reply('Please provide a valid number of coins.')
+        await economy.setCoins(message.guild.id, target.id, coins)
+        return message.reply(`Set ${target}'s balance to ${coins}`)
     }
+}
