@@ -1,6 +1,6 @@
 const { ShardingManager } = require('discord.js')
 require('dotenv').config()
-const token = 'Nzk5Nzc5NDk1NTgxODQzNTc1.YAIisg.mp3aYxzAQZ0ktD571u_hkPqPAYI';
+const token = 'Nzk5Nzc5NDk1NTgxODQzNTc1.YAIisg.YU_BVmghFfx85SKuAtEWoPic7FY';
 const manager = new ShardingManager('./index.js', { token: token });
 
 

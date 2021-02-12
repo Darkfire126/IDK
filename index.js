@@ -96,27 +96,23 @@ client.on('ready', () => {
 const Constants = require('./node_modules/discord.js/src/util/Constants');
 const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord Android`; //or Discord iOS
  //Ran whenever a supported database connection is connected
+ const activities_list = [
+  ` yesing`, 
+  `with s.help`,
+  "f", 
+  "Never Gonna Give You Up..."
+  ]; // creates an arraylist containing phrases you want your bot to switch through.
 
-  let TOserver = client.guilds.cache.size; 
 
-const Acr = [
-'Nothing',
-'errors go BRRRRRRRRRRRR',
-'My developer go crazy',
-'4mil lines of code.'
-]
-if(client.shard.ids[0] === 0) client.on('ready', async () => {
-    let index = 0;
+ client.on('ready', async () => {
+
     setInterval(() => {
-if(index === Acr[index]) index = 0;
-const status = Acr[index];
+      const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
+      client.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
+  }, 10000); // Runs this every 10 seconds.
+});
 
-client.user.setActivity(status, {type: 'WATCHING'})
-index++;
-    }, 5000)
-    client.user.setStatus(webmoblie)
-  console.log(client.user.tag + ' has logged in.');
-  })
+  
  Levels.setURL(process.env.MONGO_URI);
   client.on("message", async (message) => {
   if (!message.guild) return;
