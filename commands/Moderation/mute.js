@@ -93,5 +93,12 @@ module.exports = {
             .setTimestamp()
         
         if (muteSuccess) target.user.send(muteEmbed).catch(() => {})
+        message.guild.channels.cache.filter(c => c.type === 'text').forEach(async (channel, id) => {
+            await channel.createOverwrite(mutedRoleId, {
+                SEND_MESSAGES: false,
+                ADD_REACTIONS: false,
+                SPEAK: false
+            })
+        });
     }
 }
