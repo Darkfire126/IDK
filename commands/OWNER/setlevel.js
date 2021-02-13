@@ -1,6 +1,5 @@
 const { GuildMember } = require('discord.js')
 const levels = require('discord-xp')
-const memberSchema = require('../../models/member-schema')
 const getTarget = require('../../util/get-target')
 
 module.exports = {
