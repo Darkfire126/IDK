@@ -96,21 +96,11 @@ client.on('ready', () => {
 const Constants = require('./node_modules/discord.js/src/util/Constants');
 const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord Android`; //or Discord iOS
  //Ran whenever a supported database connection is connected
- const activities_list = [
-  ` yesing`, 
-  `with s.help`,
-  "f", 
-  "Never Gonna Give You Up..."
-  ]; // creates an arraylist containing phrases you want your bot to switch through.
 
 
- client.on('ready', async () => {
-
-    setInterval(() => {
-      const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
-      client.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
-  }, 10000); // Runs this every 10 seconds.
-});
+ client.on('ready', () => {
+  client.user.setActivity("Life is true ngl")
+ })
 
   
  Levels.setURL(process.env.MONGO_URI);

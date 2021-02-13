@@ -8,19 +8,21 @@ module.exports = {
         message.delete()
      
         let messageToSay = args.join(" ")
-        const embed = new MessageEmbed()
-.setTitle(`...`)
-.setDescription(`${messageToSay}`)
-.setFooter("yes")
-.setTimestamp()
-.setColor('RANDOM')
+     
 try {
     if(args[0] === '--noembed') {
       let   messageToSay = args.slice(1).join(' ')
         await message.channel.send(`${messageToSay}`)
     }
-    if(!args[0] === '--noembed') {
-        let messageToSay = args.join(' ')
+    if(args[0] === '--embed') {
+        let messageToSay = args.slice(1).join(' ')
+        const embed = new MessageEmbed()
+        .setTitle(`...`)
+        .setDescription(`${messageToSay}`)
+        .setFooter("yes")
+        .setTimestamp()
+        .setColor('RANDOM')
+        
         await message.channel.send(embed);
     }
 } catch(error) {

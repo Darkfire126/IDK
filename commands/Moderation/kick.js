@@ -6,6 +6,7 @@ module.exports = {
     requiredPermissions: ['KICK_MEMBERS'],
     expectedArgs: "<@user> <reason>",
     callback: async ({ message, args, text, client, prefix, instance, arguments }) => {
+ 
         if(message.author.bot || message.channel.type === "dm") return;
         if(!message.guild.me.hasPermission("KICK_MEMBERS")) return message.channel.send("I need KICK_MEMBERS permission or ADMINISTRATOR permission to execute this command!").then(m => m.delete({ timeout: 5000}));
         
