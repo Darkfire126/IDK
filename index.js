@@ -122,7 +122,7 @@ const webmoblie = Constants.DefaultOptions.ws.properties.$browser = `Discord And
   const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomAmountOfXp);
   if (hasLeveledUp) {
     const user = await Levels.fetch(message.author.id, message.guild.id);
-    message.channel.send(`${message.author.username}, congratulations! You have leveled up to **${user.level}**. :tada:`).then(m => m.delete({ timeout: 15000}));
+    message.channel.send(`${message.author.username}, congratulations! You have leveled up to **${user.level}**. 🎉`).then(m => m.delete({ timeout: 15000}));
   }
 });
 
